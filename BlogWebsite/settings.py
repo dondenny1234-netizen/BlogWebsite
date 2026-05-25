@@ -64,12 +64,13 @@ WSGI_APPLICATION = 'BlogWebsite.wsgi.application'
 
 # Database
 # Vercel uses /tmp (writable). Locally uses db.sqlite3 in project root.
-if os.environ.get('VERCEL'):
+import dj_database_url
+
+DATABASE_URL = os.environ.get('DATABASE_URL')
+
+if DATABASE_URL:
     DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': '/tmp/db.sqlite3',
-        }
+        'default': dj_database_url.parse(DATABASE_URL)
     }
 else:
     DATABASES = {
