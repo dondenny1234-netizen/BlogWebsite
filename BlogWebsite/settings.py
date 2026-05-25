@@ -111,3 +111,4 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+WHITENOISE_ROOT = os.path.join(BASE_DIR, 'staticfiles')
