@@ -1,0 +1,60 @@
+{% extends 'portfolio/base.html' %}
+
+{% block title %}Certificates · Don Denny{% endblock %}
+
+{% block content %}
+
+<section class="page-hero">
+  <div class="container">
+    <div class="section-label">Certificates</div>
+    <h1 class="display">Proof of<br>the Work</h1>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="card-grid">
+
+      {% for cert in certificates %}
+        <article class="cert-card reveal">
+
+          {% if cert.image %}
+            <img src="{{ cert.image.url }}"
+                 alt="{{ cert.name }}"
+                 class="cert-image">
+          {% endif %}
+
+          <div class="cert-card-body">
+            <div class="cert-org">{{ cert.organization }}</div>
+            <h3 class="cert-name">{{ cert.name }}</h3>
+
+            {% if cert.details %}
+              <p class="cert-details">{{ cert.details }}</p>
+            {% endif %}
+
+            <div class="cert-date">
+              <i class="fa-regular fa-calendar"></i>
+              {{ cert.date_issued|date:"F Y" }}
+            </div>
+
+            {% if cert.credential_url %}
+              <a href="{{ cert.credential_url }}"
+                 target="_blank"
+                 class="cert-link">
+                View Credential →
+              </a>
+            {% endif %}
+          </div>
+
+        </article>
+      {% empty %}
+        <div class="card">
+          <p class="cert-details">No certificates added yet.</p>
+        </div>
+      {% endfor %}
+
+    </div>
+  </div>
+</section>
+
+{% endblock %}

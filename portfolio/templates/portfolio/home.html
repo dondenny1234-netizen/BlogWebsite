@@ -1,0 +1,141 @@
+{% extends 'portfolio/base.html' %}
+{% load static %}
+
+{% block title %}Don Denny Mathew{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+  <div class="container hero-grid">
+
+    <div>
+      <div class="hero-eyebrow">B.Tech Student · RSET Kakkanad</div>
+
+      <h1 class="hero-name">Don Denny<br>Mathew</h1>
+
+      <p class="hero-title">Developer · Builder · Curious Mind</p>
+
+      <p class="hero-bio">
+        I learn best by doing. From Django backends to Unreal
+        environments, I turn ideas into working applications —
+        one experiment at a time. Currently open to internships.
+      </p>
+
+      <div class="hero-actions">
+    <a href="{% url 'projects' %}" class="btn btn-primary">
+        View Projects
+    </a>
+    <a href="{% url 'resume' %}" class="btn btn-outline" target="_blank">
+        <i class="fa-solid fa-file-lines"></i>
+        Download Resume
+    </a>
+</div>
+    </div>
+
+    <div class="hero-image-wrap">
+      <img src="{% static 'images/hero.jpg' %}"
+           class="hero-photo"
+           alt="Don Denny Mathew">
+    </div>
+
+  </div>
+
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- Featured Projects -->
+<section class="section">
+  <div class="container">
+    <div class="section-label">Featured Work</div>
+    <h2 class="section-title">Selected Projects</h2>
+
+    <div class="card-grid">
+      {% for project in featured_projects %}
+        <div class="project-card reveal">
+
+          {% if project.image %}
+            <img src="{{ project.image.url }}"
+                 class="project-img"
+                 alt="{{ project.title }}">
+          {% else %}
+            <div class="project-img-placeholder">
+              <i class="fa-solid fa-code"></i>
+            </div>
+          {% endif %}
+
+          <div class="project-body">
+            <div class="project-tech">
+              {% for tag in project.tech.split %}
+                <span class="tech-tag">{{ tag }}</span>
+              {% endfor %}
+            </div>
+            <h3 class="project-title">{{ project.title }}</h3>
+            <p class="project-desc">{{ project.description }}</p>
+          </div>
+
+        </div>
+      {% empty %}
+        <p style="color: var(--muted);">
+          No featured projects yet — tick "Featured" on a project in admin.
+        </p>
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- Skills -->
+{% if skills %}
+<section class="section">
+  <div class="container">
+    <div class="section-label">What I Work With</div>
+    <h2 class="section-title">Skills</h2>
+
+    <div class="skills-grid">
+      {% for skill in skills %}
+        <div class="skill-item reveal">
+          <div class="skill-header">
+            <span class="skill-name">{{ skill.name }}</span>
+            <span class="skill-pct">{{ skill.level }}%</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-fill" style="width: {{ skill.level }}%"></div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+{% endif %}
+
+<!-- Interests -->
+{% if interests %}
+<section class="section">
+  <div class="container">
+    <div class="section-label">Beyond Code</div>
+    <h2 class="section-title">Interests</h2>
+
+    <div class="interests-list">
+      {% for interest in interests %}
+        <div class="interest-chip reveal">
+          {% if interest.icon %}{{ interest.icon }} {% endif %}
+          {{ interest.name }}
+        </div>
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+{% endif %}
+
+{% endblock %}

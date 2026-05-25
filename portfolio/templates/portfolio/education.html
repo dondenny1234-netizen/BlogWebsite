@@ -1,0 +1,76 @@
+{% extends 'portfolio/base.html' %}
+
+{% block title %}Education · Don Denny{% endblock %}
+
+{% block content %}
+
+<section class="page-hero">
+  <div class="container">
+    <div class="section-label">Education & Experience</div>
+    <h1 class="display">Where I've<br>Been Learning</h1>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-label">Education</div>
+    <h2 class="section-title">Academic Background</h2>
+
+    <div class="timeline">
+      {% for edu in educations %}
+        <div class="timeline-item reveal">
+          <div class="timeline-period">
+            {{ edu.start_year }} —
+            {% if edu.is_current %}Present{% else %}{{ edu.end_year }}{% endif %}
+          </div>
+          <div class="timeline-role">
+            {{ edu.degree }}{% if edu.field %} in {{ edu.field }}{% endif %}
+          </div>
+          <div class="timeline-company">{{ edu.institution }}</div>
+          {% if edu.description %}
+            <div class="timeline-desc">{{ edu.description }}</div>
+          {% endif %}
+          {% if edu.image %}
+            <img src="{{ edu.image.url }}"
+                 alt="{{ edu.institution }}"
+                 style="margin-top: 12px; max-width: 200px;
+                        border-radius: 6px; border: 1px solid var(--border);">
+          {% endif %}
+        </div>
+      {% empty %}
+        <p style="color: var(--muted);">No education added yet.</p>
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section class="section">
+  <div class="container">
+    <div class="section-label">Experience</div>
+    <h2 class="section-title">Work & Practice</h2>
+
+    <div class="timeline">
+      {% for exp in experiences %}
+        <div class="timeline-item reveal">
+          <div class="timeline-period">
+            {{ exp.start_date|date:"M Y" }} —
+            {% if exp.is_current %}Present{% else %}{{ exp.end_date|date:"M Y" }}{% endif %}
+          </div>
+          <div class="timeline-role">{{ exp.role }}</div>
+          <div class="timeline-company">
+            {{ exp.company }}{% if exp.location %} · {{ exp.location }}{% endif %}
+          </div>
+          <div class="timeline-desc">{{ exp.description }}</div>
+        </div>
+      {% empty %}
+        <p style="color: var(--muted);">No experience added yet.</p>
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+
+{% endblock %}

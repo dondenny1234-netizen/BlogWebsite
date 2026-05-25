@@ -1,0 +1,73 @@
+{% extends 'portfolio/base.html' %}
+
+{% block title %}Contact · Don Denny{% endblock %}
+
+{% block content %}
+
+<section class="page-hero">
+  <div class="container">
+    <div class="section-label">Contact</div>
+    <h1 class="display">Let's Build<br>Something</h1>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container contact-grid">
+
+    <div class="contact-info">
+      <div class="section-label">Reach Out</div>
+      <h2>Open for Internships</h2>
+
+      <p>
+        I'm a B.Tech student at RSET Kakkanad actively looking
+        for internship opportunities. If you have something
+        interesting, I'd love to hear about it.
+      </p>
+
+      <a href="mailto:don.denny1234@gmail.com" class="contact-email">
+        <i class="fa-regular fa-envelope"></i>
+        don.denny1234@gmail.com
+      </a>
+
+      <div class="social-links">
+        {% for social in social_links %}
+          <a href="{{ social.url }}" target="_blank" class="social-link">
+
+            {% if social.platform == 'linkedin' %}
+              <i class="fa-brands fa-linkedin"></i>
+            {% elif social.platform == 'github' %}
+              <i class="fa-brands fa-github"></i>
+            {% elif social.platform == 'instagram' %}
+              <i class="fa-brands fa-instagram"></i>
+            {% elif social.platform == 'twitter' %}
+              <i class="fa-brands fa-x-twitter"></i>
+            {% elif social.platform == 'youtube' %}
+              <i class="fa-brands fa-youtube"></i>
+            {% elif social.platform == 'behance' %}
+              <i class="fa-brands fa-behance"></i>
+            {% else %}
+              <i class="fa-solid fa-globe"></i>
+            {% endif %}
+
+            {{ social.display_name|default:social.platform|upper }}
+
+          </a>
+        {% empty %}
+          <p style="color: var(--muted);">No social links added yet.</p>
+        {% endfor %}
+      </div>
+
+      <div class="resume-block">
+    <p>Prefer to look at my resume first? Here you go.</p>
+    <a href="{% url 'resume' %}" class="btn btn-outline" target="_blank">
+        <i class="fa-solid fa-file-lines"></i>
+        Download Resume
+    </a>
+</div>
+
+    </div>
+
+  </div>
+</section>
+
+{% endblock %}

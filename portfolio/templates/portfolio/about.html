@@ -1,0 +1,134 @@
+{% extends 'portfolio/base.html' %}
+{% load static %}
+
+{% block title %}About · Don Denny{% endblock %}
+
+{% block content %}
+
+<section class="page-hero">
+  <div class="container">
+    <div class="section-label">About</div>
+    <h1 class="display">The Person<br>Behind the Code</h1>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container two-col">
+
+    <div>
+      <img src="{% static 'images/profile.jpg' %}"
+           class="hero-photo"
+           alt="Don Denny Mathew">
+    </div>
+
+    <div>
+      <div class="section-label">Who I Am</div>
+      <h2 class="section-title">Don Denny Mathew</h2>
+
+      <p style="color: var(--muted); line-height: 1.9; margin-bottom: 1.2rem;">
+        B.Tech student at RSET Kakkanad with a hands-on approach
+        to learning. I don't wait to understand everything before
+        starting — I build, break things, and figure it out along
+        the way.
+      </p>
+
+      <p style="color: var(--muted); line-height: 1.9; margin-bottom: 1.2rem;">
+        Right now I'm exploring MVT with Django, MVC with Spring,
+        game development with Unreal Engine, and cross-platform
+        apps with Flutter. Proficient in Python, Java, and C.
+      </p>
+
+      <p style="color: var(--muted); line-height: 1.9;">
+        I'm looking for an internship where I can contribute
+        meaningfully, keep learning fast, and work on things
+        that actually matter.
+      </p>
+
+      <br>
+      <a href="{% url 'contact' %}" class="btn btn-outline">
+        Get In Touch
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- Skills -->
+<section class="section">
+  <div class="container">
+    <div class="section-label">Skills</div>
+    <h2 class="section-title">What I Work With</h2>
+
+    <div class="skills-grid">
+      {% for skill in skills %}
+        <div class="skill-item reveal">
+          <div class="skill-header">
+            <span class="skill-name">{{ skill.name }}</span>
+            <span class="skill-pct">{{ skill.level }}%</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-fill" style="width: {{ skill.level }}%"></div>
+          </div>
+        </div>
+      {% empty %}
+        <p style="color: var(--muted);">No skills added yet.</p>
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- Experience -->
+<section class="section">
+  <div class="container">
+    <div class="section-label">Experience</div>
+    <h2 class="section-title">Work & Practice</h2>
+
+    <div class="timeline">
+      {% for exp in experiences %}
+        <div class="timeline-item reveal">
+          <div class="timeline-period">
+            {{ exp.start_date|date:"M Y" }} —
+            {% if exp.is_current %}Present{% else %}{{ exp.end_date|date:"M Y" }}{% endif %}
+          </div>
+          <div class="timeline-role">{{ exp.role }}</div>
+          <div class="timeline-company">
+            {{ exp.company }}{% if exp.location %} · {{ exp.location }}{% endif %}
+          </div>
+          <div class="timeline-desc">{{ exp.description }}</div>
+        </div>
+      {% empty %}
+        <p style="color: var(--muted);">Nothing here yet — add experience in admin.</p>
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- Interests -->
+{% if interests %}
+<section class="section">
+  <div class="container">
+    <div class="section-label">Beyond Code</div>
+    <h2 class="section-title">Interests</h2>
+
+    <div class="interests-list">
+      {% for interest in interests %}
+        <div class="interest-chip reveal">
+          {% if interest.icon %}{{ interest.icon }} {% endif %}
+          {{ interest.name }}
+        </div>
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+{% endif %}
+
+{% endblock %}

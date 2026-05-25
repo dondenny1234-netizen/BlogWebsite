@@ -1,0 +1,54 @@
+{% extends 'portfolio/base.html' %}
+{% load static %}
+
+{% block title %}Projects · Don Denny{% endblock %}
+
+{% block content %}
+
+<section class="page-hero">
+  <div class="container">
+    <div class="section-label">Projects</div>
+    <h1 class="display">Things I've<br>Built</h1>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="card-grid">
+
+      {% for project in projects %}
+        <div class="project-card reveal">
+
+          {% if project.image %}
+            <img src="{{ project.image.url }}"
+                 class="project-img"
+                 alt="{{ project.title }}">
+          {% else %}
+            <div class="project-img-placeholder">
+              <i class="fa-solid fa-code"></i>
+            </div>
+          {% endif %}
+
+          <div class="project-body">
+            <div class="project-tech">
+              {% for tag in project.tech.split %}
+                <span class="tech-tag">{{ tag }}</span>
+              {% endfor %}
+            </div>
+            <h3 class="project-title">{{ project.title }}</h3>
+            <p class="project-desc">{{ project.description }}</p>
+            <small style="color: var(--muted); font-size: 0.78rem;">
+              {{ project.date|date:"M Y" }}
+            </small>
+          </div>
+
+        </div>
+      {% empty %}
+        <p style="color: var(--muted);">No projects yet — add some in admin.</p>
+      {% endfor %}
+
+    </div>
+  </div>
+</section>
+
+{% endblock %}
