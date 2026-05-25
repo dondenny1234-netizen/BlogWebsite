@@ -1,5 +1,6 @@
 from pathlib import Path
 import os
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -16,8 +17,8 @@ DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
-    '.vercel.app',   # covers all *.vercel.app domains automatically
-    '*',             # remove this once you have your exact Vercel URL
+    '.vercel.app',
+    '*',
 ]
 
 # Application definition
@@ -31,7 +32,7 @@ INSTALLED_APPS = [
     'portfolio',
 ]
 
-# WhiteNoise MUST be second — right after SecurityMiddleware
+# Middleware
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
@@ -63,14 +64,19 @@ TEMPLATES = [
 WSGI_APPLICATION = 'BlogWebsite.wsgi.application'
 
 # Database
-# Vercel uses /tmp (writable). Locally uses db.sqlite3 in project root.
-import dj_database_url
+DATABASE_URL = os.environ.get("DATABASE_URL", "").strip()
 
-DATABASE_URL = os.environ.get('DATABASE_URL')
-
-if DATABASE_URL:
+if DATABASE_URL and DATABASE_URL.startswith((
+    "postgres://",
+    "postgresql://",
+    "mysql://",
+    "sqlite://"
+)):
     DATABASES = {
-        'default': dj_database_url.config(default=DATABASE_URL, conn_max_age=600)
+        "default": dj_database_url.parse(
+            DATABASE_URL,
+            conn_max_age=600
+        )
     }
 else:
     DATABASES = {
@@ -82,33 +88,42 @@ else:
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
-    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
-    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
-    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
-    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
+    {
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+    },
 ]
 
 # Internationalization
 LANGUAGE_CODE = 'en-us'
-TIME_ZONE     = 'UTC'
-USE_I18N      = True
-USE_TZ        = True
+TIME_ZONE = 'UTC'
+USE_I18N = True
+USE_TZ = True
 
 # Static files
-STATIC_URL   = '/static/'
-STATIC_ROOT  = os.path.join(BASE_DIR, 'staticfiles')  # where collectstatic outputs
+STATIC_URL = '/static/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATICFILES_DIRS = [
-    BASE_DIR / 'portfolio' / 'static',  # your source static files
+    BASE_DIR / 'portfolio' / 'static',
 ]
 
-# WhiteNoise compressed static storage for production
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-# Media files (uploaded images — certificates, projects, etc.)
-MEDIA_URL  = '/media/'
+WHITENOISE_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# Media files
+MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-WHITENOISE_ROOT = os.path.join(BASE_DIR, 'staticfiles')
