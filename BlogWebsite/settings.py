@@ -28,10 +28,10 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
     'portfolio',
+    'cloudinary_storage',  # must be BEFORE staticfiles
+    'django.contrib.staticfiles',
     'cloudinary',
-    'cloudinary_storage',
 ]
 
 # Middleware
@@ -119,10 +119,11 @@ STATICFILES_DIRS = [
     BASE_DIR / 'portfolio' / 'static',
 ]
 
+# ✅ CORRECT - key names as strings, actual values from env vars
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': os.environ.get('dglifjs01'),
-    'API_KEY': os.environ.get('597268183577578'),
-    'API_SECRET': os.environ.get('UcHlVMfsNP6euzqHtgRm7oWsBJE'),
+    'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME'),
+    'API_KEY': os.environ.get('CLOUDINARY_API_KEY'),
+    'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET'),
 }
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
