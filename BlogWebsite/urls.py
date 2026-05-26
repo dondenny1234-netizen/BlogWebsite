@@ -2,10 +2,20 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
+from django.http import JsonResponse
+import os
 
+def debug_cloudinary(request):
+    return JsonResponse({
+        'cloud_name': os.environ.get('CLOUDINARY_CLOUD_NAME'),
+        'api_key': os.environ.get('CLOUDINARY_API_KEY'),
+        'has_secret': bool(os.environ.get('CLOUDINARY_API_SECRET')),
+        'default_storage': os.environ.get('DJANGO_SETTINGS_MODULE'),
+    })
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('portfolio.urls')),
+    path('debug/', debug_cloudinary),
 ]
 
 if settings.DEBUG:
