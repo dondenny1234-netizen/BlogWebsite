@@ -2,7 +2,7 @@ name: Keep Render Awake
 
 on:
   schedule:
-    - cron: "*/14 * * * *"  # Runs every 14 minutes
+    - cron: "*/14 * * * *"
   workflow_dispatch:
 
 jobs:
@@ -12,4 +12,4 @@ jobs:
     steps:
       - name: Ping Render App
         run: |
-          curl -L https://YOUR-APP.onrender.com/
+          curl -L https://dondenny.onrender.com/
