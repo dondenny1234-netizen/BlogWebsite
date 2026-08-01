@@ -1,0 +1,74 @@
+[
+  {
+    "model": "portfolio.interest",
+    "pk": 8,
+    "fields": {
+      "name": "Database Management",
+      "icon": "\ud83d\uddc4\ufe0f",
+      "order": "0"
+    }
+  },
+  {
+    "model": "portfolio.interest",
+    "pk": 7,
+    "fields": {
+      "name": "API Development",
+      "icon": "\ud83d\udce1",
+      "order": "0"
+    }
+  },
+  {
+    "model": "portfolio.interest",
+    "pk": 6,
+    "fields": {
+      "name": "UI/UX Design",
+      "icon": "\ud83c\udfa8",
+      "order": "0"
+    }
+  },
+  {
+    "model": "portfolio.interest",
+    "pk": 5,
+    "fields": {
+      "name": "Mobile App Development",
+      "icon": "\ud83d\udcf1",
+      "order": "0"
+    }
+  },
+  {
+    "model": "portfolio.interest",
+    "pk": 4,
+    "fields": {
+      "name": "Full Stack Development",
+      "icon": "\ud83d\udee0\ufe0f",
+      "order": "0"
+    }
+  },
+  {
+    "model": "portfolio.interest",
+    "pk": 3,
+    "fields": {
+      "name": "Web Development",
+      "icon": "\ud83c\udf10",
+      "order": "0"
+    }
+  },
+  {
+    "model": "portfolio.interest",
+    "pk": 2,
+    "fields": {
+      "name": "Cybersecurity",
+      "icon": "\ud83d\udd10",
+      "order": "0"
+    }
+  },
+  {
+    "model": "portfolio.interest",
+    "pk": 1,
+    "fields": {
+      "name": "Artificial Intelligence",
+      "icon": "\ud83e\udd16",
+      "order": "0"
+    }
+  }
+]

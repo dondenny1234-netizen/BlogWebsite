@@ -1,0 +1,26 @@
+[
+  {
+    "model": "portfolio.project",
+    "pk": 2,
+    "fields": {
+      "title": "RSET College \u2013 Empowering Future Innovators",
+      "description": "A modern educational platform showcasing courses, campus information, and opportunities for future engineers and innovators.",
+      "image": "media/projects/Screenshot_2026-05-24_181326_g9rspp",
+      "tech": "Frontend \ud83c\udf10 HTML5 \ud83c\udfa8 CSS3 \u26a1 JavaScript || Backend \ud83d\udee0\ufe0f Django \ud83d\udc0d Python",
+      "date": "2026-05-27",
+      "featured": "0"
+    }
+  },
+  {
+    "model": "portfolio.project",
+    "pk": 1,
+    "fields": {
+      "title": "ResumeAI \u2013 Intelligent Resume Analysis Platform",
+      "description": "Upload your resume and receive instant ATS scoring, skill-gap analysis, personalized career roadmaps, and AIpowered mock interview simulations with real-time feedback to improve your job readiness.",
+      "image": "media/projects/Screenshot_2026-05-24_171858_hgpyh2",
+      "tech": "\ud83c\udf10 HTML5 \ud83c\udfa8 CSS3 \u26a1 JavaScript \ud83d\udc0d Python \ud83d\udee0\ufe0f Django \ud83e\udd16 OpenAI API \ud83d\udcc4 PyMuPDF \ud83d\uddc4\ufe0f SQLite \ud83d\udcbb Git & GitHub",
+      "date": "2026-05-27",
+      "featured": "1"
+    }
+  }
+]

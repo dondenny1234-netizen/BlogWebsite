@@ -1,0 +1,52 @@
+[
+  {
+    "model": "portfolio.sociallink",
+    "pk": 5,
+    "fields": {
+      "platform": "other",
+      "url": "https://myanimelist.net/profile/Lostfromsleep",
+      "display_name": "Anime website",
+      "order": "0"
+    }
+  },
+  {
+    "model": "portfolio.sociallink",
+    "pk": 4,
+    "fields": {
+      "platform": "website",
+      "url": "https://dondenny.onrender.com/",
+      "display_name": "",
+      "order": "0"
+    }
+  },
+  {
+    "model": "portfolio.sociallink",
+    "pk": 3,
+    "fields": {
+      "platform": "instagram",
+      "url": "https://www.instagram.com/don._.denny_1/",
+      "display_name": "d0n",
+      "order": "0"
+    }
+  },
+  {
+    "model": "portfolio.sociallink",
+    "pk": 2,
+    "fields": {
+      "platform": "linkedin",
+      "url": "https://www.linkedin.com/in/don-denny-mathew/",
+      "display_name": "DonDenny Linkdin",
+      "order": "0"
+    }
+  },
+  {
+    "model": "portfolio.sociallink",
+    "pk": 1,
+    "fields": {
+      "platform": "github",
+      "url": "https://github.com/dondenny1234-netizen",
+      "display_name": "DDMCodes",
+      "order": "0"
+    }
+  }
+]

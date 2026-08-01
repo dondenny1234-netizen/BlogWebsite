@@ -1,0 +1,132 @@
+[
+  {
+    "model": "portfolio.skill",
+    "pk": 2,
+    "fields": {
+      "name": "\u26a1 JavaScript",
+      "category": "language",
+      "level": "70",
+      "order": "0"
+    }
+  },
+  {
+    "model": "portfolio.skill",
+    "pk": 11,
+    "fields": {
+      "name": "\u2728 CSS Animations",
+      "category": "tool",
+      "level": "69",
+      "order": "0"
+    }
+  },
+  {
+    "model": "portfolio.skill",
+    "pk": 4,
+    "fields": {
+      "name": "\ud83c\udf10 HTML5 \ud83c\udfa8 CSS3",
+      "category": "language",
+      "level": "80",
+      "order": "0"
+    }
+  },
+  {
+    "model": "portfolio.skill",
+    "pk": 1,
+    "fields": {
+      "name": "\ud83d\udc0d Python",
+      "category": "language",
+      "level": "100",
+      "order": "0"
+    }
+  },
+  {
+    "model": "portfolio.skill",
+    "pk": 7,
+    "fields": {
+      "name": "\ud83d\udc19 GitHub",
+      "category": "other",
+      "level": "100",
+      "order": "0"
+    }
+  },
+  {
+    "model": "portfolio.skill",
+    "pk": 3,
+    "fields": {
+      "name": "\ud83d\udc19 GitHub",
+      "category": "tool",
+      "level": "80",
+      "order": "0"
+    }
+  },
+  {
+    "model": "portfolio.skill",
+    "pk": 12,
+    "fields": {
+      "name": "\ud83d\udce1 REST API Basics",
+      "category": "other",
+      "level": "73",
+      "order": "0"
+    }
+  },
+  {
+    "model": "portfolio.skill",
+    "pk": 6,
+    "fields": {
+      "name": "\ud83d\udcf1 Flutter",
+      "category": "framework",
+      "level": "80",
+      "order": "0"
+    }
+  },
+  {
+    "model": "portfolio.skill",
+    "pk": 10,
+    "fields": {
+      "name": "\ud83d\udcf2 Responsive Web Design",
+      "category": "tool",
+      "level": "80",
+      "order": "0"
+    }
+  },
+  {
+    "model": "portfolio.skill",
+    "pk": 8,
+    "fields": {
+      "name": "\ud83d\udda5\ufe0f VS Code",
+      "category": "framework",
+      "level": "100",
+      "order": "0"
+    }
+  },
+  {
+    "model": "portfolio.skill",
+    "pk": 9,
+    "fields": {
+      "name": "\ud83d\ude80 Render",
+      "category": "tool",
+      "level": "100",
+      "order": "0"
+    }
+  },
+  {
+    "model": "portfolio.skill",
+    "pk": 5,
+    "fields": {
+      "name": "\ud83d\udee0\ufe0f Django",
+      "category": "framework",
+      "level": "80",
+      "order": "0"
+    }
+  },
+  {
+    "model": "portfolio.skill",
+    "pk": 13,
+    "fields": {
+      "name": "\ud83e\udde0 AI & Emerging Technologies",
+      "category": "other",
+      "level": "80",
+      "order": "0"
+    }
+  }
+]
