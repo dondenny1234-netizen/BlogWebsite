@@ -175,19 +175,16 @@ CLOUDINARY_STORAGE = {
 # Django 6 storage configuration
 
 STORAGES = {
-
     "default": {
-        "BACKEND":
-        "cloudinary_storage.storage.MediaCloudinaryStorage",
+        "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
     },
-
     "staticfiles": {
-    "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
-},
+        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+    },
 }
 
 
-
+STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
 
 
 
