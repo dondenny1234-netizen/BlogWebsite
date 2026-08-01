@@ -33,8 +33,9 @@ INSTALLED_APPS = [
 
     'portfolio',
 
-    'cloudinary_storage',
     'django.contrib.staticfiles',
+    
+    'cloudinary_storage',
     'cloudinary',
 
     'import_export',
@@ -150,10 +151,6 @@ STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 
-STATICFILES_DIRS = [
-    BASE_DIR / 'portfolio' / 'static',
-]
-
 
 
 # Cloudinary config
@@ -173,19 +170,24 @@ CLOUDINARY_STORAGE = {
 
 
 # Django 6 storage configuration
+# Static files
+STATIC_URL = "/static/"
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
-STORAGES = {
-    "default": {
-        "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
-    },
-    "staticfiles": {
-        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
-    },
-}
+STATICFILES_STORAGE = (
+    "whitenoise.storage.CompressedStaticFilesStorage"
+)
 
 
-STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
+# Media files
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
 
+
+# Cloudinary only for media uploads
+DEFAULT_FILE_STORAGE = (
+    "cloudinary_storage.storage.MediaCloudinaryStorage"
+)
 
 
 MEDIA_URL = '/media/'
