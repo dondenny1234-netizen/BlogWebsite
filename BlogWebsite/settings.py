@@ -101,9 +101,21 @@ USE_TZ = True
 # Static files
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
+
 STATICFILES_DIRS = [
     BASE_DIR / 'portfolio' / 'static',
 ]
+
+
+# Django 6 storage config
+STORAGES = {
+    "default": {
+        "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
+    },
+}
 
 # Cloudinary config
 CLOUDINARY_STORAGE = {
@@ -122,8 +134,6 @@ STORAGES = {
     },
 }
 
-# Required for django-cloudinary-storage compatibility with Django 6
-STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
 # Media files
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
