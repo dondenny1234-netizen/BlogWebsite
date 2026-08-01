@@ -31,14 +31,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
 
-    'django.contrib.staticfiles',
+    'portfolio',
 
     'cloudinary_storage',
+    'django.contrib.staticfiles',
     'cloudinary',
 
     'import_export',
-
-    'portfolio',
 ]
 
 
@@ -150,6 +149,10 @@ STATIC_URL = '/static/'
 
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
+
+STATICFILES_DIRS = [
+    BASE_DIR / 'portfolio' / 'static',
+]
 
 
 

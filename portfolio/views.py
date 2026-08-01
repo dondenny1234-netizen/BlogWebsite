@@ -10,11 +10,28 @@ from .models import (
 )
 
 def home(request):
-    featured_projects = Project.objects.filter(featured=True)
+    featured_projects = Project.objects.filter(featured=True)[:3]
+
+    featured_certificates = Certificate.objects.order_by(
+        "-date_issued"
+    )[:3]
+
+    latest_education = Education.objects.order_by(
+        "-start_year"
+    )[:1]
+
+    latest_experience = Experience.objects.order_by(
+        "-start_date"
+    )[:2]
+
     skills = Skill.objects.all()
     interests = Interest.objects.all()
+
     return render(request, 'portfolio/home.html', {
         'featured_projects': featured_projects,
+        'featured_certificates': featured_certificates,
+        'latest_education': latest_education,
+        'latest_experience': latest_experience,
         'skills': skills,
         'interests': interests,
     })

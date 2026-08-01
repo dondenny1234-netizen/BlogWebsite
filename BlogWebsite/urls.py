@@ -6,6 +6,7 @@ from django.http import JsonResponse
 import os
 from django.core.files.storage import default_storage
 
+
 def debug_cloudinary(request):
     return JsonResponse({
         'cloud_name': os.environ.get('CLOUDINARY_CLOUD_NAME'),

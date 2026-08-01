@@ -25,10 +25,17 @@
     <a href="{% url 'projects' %}" class="btn btn-primary">
         View Projects
     </a>
-    <a href="{% url 'resume' %}" class="btn btn-outline" target="_blank">
-        <i class="fa-solid fa-file-lines"></i>
-        Download Resume
-    </a>
+    {% if resume %}
+<a href="{{ resume.file.url }}" class="btn btn-outline" target="_blank">
+    <i class="fa-solid fa-file-lines"></i>
+    Download Resume
+</a>
+{% else %}
+<a href="#" class="btn btn-outline disabled">
+    <i class="fa-solid fa-clock"></i>
+    Resume Coming Soon
+</a>
+{% endif %}
 </div>
     </div>
 
@@ -85,12 +92,171 @@
         </p>
       {% endfor %}
     </div>
+    <div style="text-align:center; margin-top:2rem;">
+    <a href="{% url 'projects' %}" class="btn btn-primary">
+        View All Projects
+    </a>
+</div>
 
   </div>
 </section>
 
 <div class="divider"></div>
 
+
+<!-- Education -->
+<section class="section">
+  <div class="container">
+
+    <div class="section-label">Education</div>
+    <h2 class="section-title">Academic Journey</h2>
+
+    {% for edu in latest_education %}
+    <div class="education-card reveal">
+
+      {% if edu.image %}
+      <img src="{{ edu.image.url }}" class="education-image" alt="{{ edu.institution }}">
+      {% endif %}
+
+      <div class="education-content">
+
+        <h3>{{ edu.degree }}</h3>
+
+        <h4>{{ edu.institution }}</h4>
+
+        <p>
+          {{ edu.start_year }} -
+          {% if edu.is_current %}
+            Present
+          {% else %}
+            {{ edu.end_year }}
+          {% endif %}
+        </p>
+
+        <p>{{ edu.description }}</p>
+
+      </div>
+
+    </div>
+    {% empty %}
+    <p>No education added yet.</p>
+    {% endfor %}
+    <div style="text-align:center; margin-top:2rem;">
+    <a href="{% url 'education' %}" class="btn btn-primary">
+        View Full Education
+    </a>
+</div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+<section class="section">
+
+<div class="container">
+
+<div class="section-label">Certificates</div>
+
+<h2 class="section-title">
+Professional Certifications
+</h2>
+
+<div class="card-grid">
+
+{% for certificate in featured_certificates %}
+
+<div class="certificate-card reveal">
+
+{% if certificate.image %}
+<img src="{{ certificate.image.url }}">
+{% endif %}
+
+<h3>{{ certificate.name }}</h3>
+
+<p>{{ certificate.organization }}</p>
+
+<p>{{ certificate.details }}</p>
+
+{% if certificate.credential_url %}
+<a href="{{ certificate.credential_url }}" target="_blank">
+View Credential
+</a>
+{% endif %}
+
+</div>
+
+{% empty %}
+
+<p>No certificates uploaded.</p>
+
+{% endfor %}
+
+</div>
+<div style="text-align:center; margin-top:2rem;">
+    <a href="{% url 'certificates' %}" class="btn btn-primary">
+        View All Certificates
+    </a>
+</div>
+
+</div>
+
+</section>
+
+<div class="divider"></div>
+<section class="section">
+
+<div class="container">
+
+<div class="section-label">
+Experience
+</div>
+
+<h2 class="section-title">
+Experience
+</h2>
+
+{% for exp in latest_experience %}
+
+<div class="experience-card reveal">
+
+<h3>{{ exp.role }}</h3>
+
+<h4>{{ exp.company }}</h4>
+
+<p>
+
+{{ exp.start_date }}
+
+-
+
+{% if exp.is_current %}
+
+Present
+
+{% else %}
+
+{{ exp.end_date }}
+
+{% endif %}
+
+</p>
+
+<p>{{ exp.description }}</p>
+
+</div>
+
+{% empty %}
+
+<p>No experience added yet.</p>
+
+{% endfor %}
+
+
+</div>
+
+</section>
+
+<div class="divider"></div>
 <!-- Skills -->
 {% if skills %}
 <section class="section">

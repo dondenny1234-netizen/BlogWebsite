@@ -1,12 +1,15 @@
 from django.contrib import admin
 from import_export.admin import ImportExportModelAdmin
-
+from .models import Resume
 from .models import (
     Certificate, Experience, Education,
     Skill, Project, Interest, SocialLink
 )
 
-
+@admin.register(Resume)
+class ResumeAdmin(admin.ModelAdmin):
+    list_display = ("title", "updated_at")
+    
 @admin.register(Certificate)
 class CertificateAdmin(ImportExportModelAdmin):
     list_display = ('name', 'organization', 'date_issued')

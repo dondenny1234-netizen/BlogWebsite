@@ -151,6 +151,39 @@ nav {
 .nav-links a:hover::after,
 .nav-links a.active::after { width: 100%; }
 
+/* Hamburger button (hidden on desktop) */
+.menu-btn {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 32px;
+  height: 32px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1100;
+}
+.menu-btn span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: var(--text);
+  border-radius: 2px;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+.menu-btn.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.menu-btn.active span:nth-child(2) { opacity: 0; }
+.menu-btn.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Off-canvas mobile menu */
+.mobile-menu {
+  display: none;
+}
+
+/* Prevent background scroll when mobile menu is open */
+body.menu-open { overflow: hidden; }
+
 /* ── HERO (HOME) ─────────────────────────────── */
 .hero {
   min-height: 100vh;
@@ -780,7 +813,72 @@ footer a:hover { color: var(--gold); }
   .nav-links { gap: 18px; }
 }
 
+/* ── DISABLED BUTTON (e.g. resume not uploaded yet) ── */
+.btn-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
 @media (max-width: 600px) {
   .nav-links { display: none; }
+
+  .menu-btn { display: flex; }
+
+  .mobile-menu {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: var(--nav-h);
+    left: 0; right: 0;
+    bottom: 0;
+    background: var(--bg);
+    padding: 24px;
+    gap: 4px;
+    transform: translateY(-8px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    overflow-y: auto;
+    z-index: 999;
+  }
+
+  .mobile-menu.active {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .mobile-menu a {
+    padding: 16px 8px;
+    font-size: 1.05rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: var(--text);
+    border-bottom: 1px solid var(--border);
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+  .mobile-menu a:hover,
+  .mobile-menu a:active { color: var(--gold); }
+
   .display { font-size: 2.8rem; }
+
+  /* Cards and grids go full width */
+  .card-grid { grid-template-columns: 1fr; }
+  .skills-grid { grid-template-columns: 1fr; }
+
+  /* Buttons: comfortable tap targets */
+  .btn { min-height: 44px; width: 100%; justify-content: center; }
+  .hero-actions { flex-direction: column; }
+  .hero-actions .btn { width: 100%; }
+
+  /* Timeline: tighten so nothing overflows the viewport */
+  .timeline { padding-left: 22px; }
+  .timeline-item::before { left: -26px; }
+
+  /* Section spacing a bit tighter on small screens */
+  .section { padding: 56px 0; }
+  .container { padding: 0 18px; }
 }

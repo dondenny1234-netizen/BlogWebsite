@@ -1,5 +1,16 @@
 from django.db import models
 
+class Resume(models.Model):
+    title = models.CharField(max_length=100, default="Resume")
+    file = models.FileField(upload_to="resume/")
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ["-updated_at"]
+
+    def __str__(self):
+        return self.title
+    
 class Certificate(models.Model):
     name = models.CharField(max_length=200)
     organization = models.CharField(max_length=200)
@@ -68,8 +79,6 @@ class Skill(models.Model):
     def __str__(self):
         return self.name
 
-
-from django.db import models
 
 class Project(models.Model):
     title = models.CharField(max_length=200)
