@@ -1,7 +1,9 @@
 from pathlib import Path
 import os
 import dj_database_url
+from dotenv import load_dotenv
 
+load_dotenv()
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.environ.get(
@@ -28,6 +30,7 @@ INSTALLED_APPS = [
     'cloudinary_storage',  # must be BEFORE staticfiles
     'django.contrib.staticfiles',
     'cloudinary',
+    'import_export',
 ]
 
 MIDDLEWARE = [
