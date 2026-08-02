@@ -5,6 +5,7 @@ from django.urls import path, include
 from django.http import JsonResponse
 import os
 from django.core.files.storage import default_storage
+from portfolio import views
 
 
 def debug_cloudinary(request):
@@ -18,6 +19,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('portfolio.urls')),
     path('debug/', debug_cloudinary),
+    path("fix-media/", views.fix_media),
 ]
 
 if settings.DEBUG:

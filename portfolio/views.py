@@ -1,9 +1,24 @@
-from django.http import HttpResponse
 from reportlab.lib.pagesizes import A4
 from reportlab.lib import colors
 from reportlab.lib.units import mm
 from reportlab.pdfgen import canvas
 from django.shortcuts import render
+from django.http import HttpResponse
+from .models import Project, Certificate, Education
+
+def fix_media(request):
+    fixed = []
+
+    for model in [Project, Certificate, Education]:
+        for obj in model.objects.all():
+            if obj.image and obj.image.name.startswith("media/"):
+                old = obj.image.name
+                obj.image.name = obj.image.name.replace("media/", "", 1)
+                obj.save(update_fields=["image"])
+                fixed.append(f"{model.__name__}: {old} -> {obj.image.name}")
+
+    return HttpResponse("<br>".join(fixed) or "Nothing to fix")
+
 from .models import (
     Project, Certificate, Experience, Education,
     Skill, Interest, SocialLink

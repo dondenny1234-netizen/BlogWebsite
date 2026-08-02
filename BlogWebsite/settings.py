@@ -185,9 +185,17 @@ MEDIA_ROOT = BASE_DIR / "media"
 
 
 # Cloudinary only for media uploads
-DEFAULT_FILE_STORAGE = (
-    "cloudinary_storage.storage.MediaCloudinaryStorage"
-)
+STORAGES = {
+
+    "default": {
+        "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
+    },
+
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
+    },
+
+}
 
 
 MEDIA_URL = '/media/'
