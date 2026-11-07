@@ -4,7 +4,7 @@ from reportlab.lib.units import mm
 from reportlab.pdfgen import canvas
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Project, Certificate, Education
+from .models import Project, Certificate, Education, Resume
 
 
 from .models import (
@@ -29,6 +29,8 @@ def home(request):
 
     skills = Skill.objects.all()
     interests = Interest.objects.all()
+    # Use the most recently updated non-empty resume uploaded through Django Admin.
+    resume = Resume.objects.exclude(file='').order_by('-updated_at').first()
 
     return render(request, 'portfolio/home.html', {
         'featured_projects': featured_projects,
@@ -37,6 +39,7 @@ def home(request):
         'latest_experience': latest_experience,
         'skills': skills,
         'interests': interests,
+        'resume': resume,
     })
 
 def about(request):
@@ -79,8 +82,10 @@ def education(request):
 
 def contact(request):
     social_links = SocialLink.objects.all()
+    resume = Resume.objects.exclude(file='').order_by('-updated_at').first()
     return render(request, 'portfolio/contact.html', {
         'social_links': social_links,
+        'resume': resume,
     })
 def generate_resume(request):
     from reportlab.lib.pagesizes import A4

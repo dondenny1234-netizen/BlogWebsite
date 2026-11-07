@@ -58,19 +58,19 @@
       </div>
 
       <div class="resume-block">
-    <p>Prefer to look at my resume first? Here you go.</p>
-    <a href="{% url 'resume' %}" class="btn btn-outline" target="_blank">
-        <i class="fa-solid fa-file-lines"></i>
+        <p>Prefer to look at my resume first? Here you go.</p>
         {% if resume %}
-<a href="{{ resume.file.url }}">
-Download Resume
-</a>
-
-{% else %}
-Resume Coming Soon
-{% endif %}
-    </a>
-</div>
+          <a href="{{ resume.file.url }}" class="btn btn-outline" target="_blank" rel="noopener noreferrer">
+            <i class="fa-solid fa-file-lines"></i>
+            Download Resume
+          </a>
+        {% else %}
+          <span class="btn btn-outline disabled">
+            <i class="fa-solid fa-clock"></i>
+            Resume Coming Soon
+          </span>
+        {% endif %}
+      </div>
 
     </div>
 
